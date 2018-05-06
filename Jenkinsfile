@@ -7,9 +7,6 @@ node {
   def buildUrl = env.BUILD_URL
   def buildNumber = env.BUILD_NUMBER
   def workspace = env.WORKSPACE
-  def mvnHome = tool 'Maven'
-  env.JAVA_HOME = tool 'JDK8'
-  env.PATH = "${env.JAVA_HOME}/bin:${mvnHome}/bin:${env.PATH}"
 
   // PRINT ENVIRONMENT TO JOB
   echo "workspace directory is $workspace"
