@@ -27,6 +27,7 @@ node {
   }
 
   stage('Deploy') {
-    sh "./mvnw -Paws deploy -DskipTests=true -DskipITs=true -DskipUnitTests=true -Dbeanstalk.cnamePrefix=packt-spring-env-test.b4dytngfpm.us-east-1"
+    echo "S3-Bucket is $env.S3_BUCKET"
+    sh "./mvnw -Paws deploy"
   }
 }

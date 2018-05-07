@@ -85,8 +85,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <s3bucket>elasticbeanstalk-us-east-1-731624388856</s3bucket>
-        <beanstalk-maven-plugin.version>1.4.0</beanstalk-maven-plugin.version>
+        <beanstalk-maven-plugin.version>1.5.0</beanstalk-maven-plugin.version>
     </properties>
 
     <scm>
@@ -176,17 +175,18 @@
             <id>aws</id>
             <properties>
                 <env.BUILD_NUMBER>1</env.BUILD_NUMBER>
+                <env.S3_BUCKET>elasticbeanstalk-us-east-1-731624388856</env.S3_BUCKET>
+                <env.BEANSTALK_ENV>packt-spring-env-dev</env.BEANSTALK_ENV>
                 <maven.install.skip>true</maven.install.skip>
                 <maven.deploy.skip>true</maven.deploy.skip>
-                <beanstalk.applicationName>Packt SpringBoot</beanstalk.applicationName>
-                <beanstalk.cnamePrefix>springboot-demo</beanstalk.cnamePrefix>
-                <beanstalk.environmentRef>packt-spring-env-test</beanstalk.environmentRef>
+                <maven.test.skip>true</maven.test.skip>
                 <maven.build.timestamp.format>yyyyMMddHHmmss</maven.build.timestamp.format>
-                <beanstalk.s3Bucket>${s3bucket}</beanstalk.s3Bucket>
+                <beanstalk.applicationName>Packt SpringBoot</beanstalk.applicationName>
+                <beanstalk.environmentRef>${env.BEANSTALK_ENV}</beanstalk.environmentRef>
+                <beanstalk.s3Bucket>${env.S3_BUCKET}</beanstalk.s3Bucket>
                 <beanstalk.s3Key>${project.build.finalName}-${maven.build.timestamp}.war
                 </beanstalk.s3Key>
                 <beanstalker.region>us-east-1</beanstalker.region>
-                <!-- Frankfurt -->
                 <beanstalker.verbose>true</beanstalker.verbose>
                 <beanstalk.versionLabel>${project.build.finalName}_v${project.version}_build${env.BUILD_NUMBER}
                 </beanstalk.versionLabel>
@@ -198,6 +198,7 @@
                     <plugin>
                         <groupId>br.com.ingenieux</groupId>
                         <artifactId>beanstalk-maven-plugin</artifactId>
+                        <version>${beanstalk-maven-plugin.version}</version>
                         <executions>
                             <execution>
                                 <id>default-deploy</id>
