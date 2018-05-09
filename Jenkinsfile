@@ -28,6 +28,6 @@ node {
 
   stage('Deploy') {
     echo "S3-Bucket is $env.S3_BUCKET"
-    sh "./mvnw -Paws deploy -DbuildNo=$buildNumber -Ds3bucket=$env.S3_BUCKET -DbeanstalkEnv=$env.BEANSTALK_ENV"
+    sh "./mvnw -Paws deploy -DbuildNo=$buildNumber -Ds3bucket=$env.S3_BUCKET -DbeanstalkEnv=$env.BEANSTALK_ENV -Dbeanstalker.region=$env.AWS_REGION"
   }
 }
